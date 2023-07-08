@@ -7,85 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "635E7425-862D-4EEB-9BC9-C3DFB9F99743"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rick_and_Morty/MVVM/List/RickAndMortyServices.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "getAllCharacters()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "635E7425-862D-4EEB-9BC9-C3DFB9F99743 - cbf17d6f86da9731"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rick_and_Morty.RickAndMortyServices.getAllCharacters() -&gt; Combine.AnyPublisher&lt;Rick_and_Morty.Characters, Rick_and_Morty.ApiError&gt;"
-                  moduleName = "Rick_and_Morty"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyServices.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "716">
-               </Location>
-               <Location
-                  uuid = "635E7425-862D-4EEB-9BC9-C3DFB9F99743 - ca5ada4da4919401"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.Data) -&gt; Foundation.Data in Rick_and_Morty.RickAndMortyServices.getAllCharacters() -&gt; Combine.AnyPublisher&lt;Rick_and_Morty.Characters, Rick_and_Morty.ApiError&gt;"
-                  moduleName = "Rick_and_Morty"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyServices.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "635E7425-862D-4EEB-9BC9-C3DFB9F99743 - cbf17d6f86da962e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rick_and_Morty.RickAndMortyServices.getAllCharacters() -&gt; Combine.AnyPublisher&lt;Rick_and_Morty.Characters, Rick_and_Morty.ApiError&gt;"
-                  moduleName = "Rick_and_Morty"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyServices.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "296">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "46DBEDBA-45D9-49FD-8B44-000A1EE33583"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rick_and_Morty/Api/Api.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "request(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "0E497FE9-034C-4ECE-8B51-3210C0FE0AA3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -118,17 +39,143 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9E7028AD-2827-4FF3-8E9D-FF02F6676619"
+            uuid = "A045E547-899D-4B54-9A76-FB0FA6C729E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rick_and_Morty/MVVM/List/Views/RickAndMortyList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "deleteItems(offsets:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB2D20BC-E015-4744-83FF-E3AB715F888E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rick_and_Morty/MVVM/List/Views/RickAndMortyList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "deleteItems(offsets:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C3C405B-F95E-4FEB-A83B-9051D1C2CEDE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rick_and_Morty/MVVM/List/Views/RickAndMortyList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "deleteItems(offsets:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75955305-42EF-46E2-86A3-0A515F7B8CAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rick_and_Morty/MVVM/List/Views/RickAndMortyList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5BE10ED-9A07-4A35-A911-90C676398179"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rick_and_Morty/MVVM/List/RickAndMortyListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "getAllCharacters()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getNext()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5BE10ED-9A07-4A35-A911-90C676398179 - 3b8c22e80342c81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Rick_and_Morty.Characters) -&gt; () in Rick_and_Morty.RickAndMortyListViewModel.getNext() -&gt; ()"
+                  moduleName = "Rick_and_Morty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "F5BE10ED-9A07-4A35-A911-90C676398179 - 3b8c22e80342c81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Rick_and_Morty.Characters) -&gt; () in Rick_and_Morty.RickAndMortyListViewModel.getNext() -&gt; ()"
+                  moduleName = "Rick_and_Morty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "F5BE10ED-9A07-4A35-A911-90C676398179 - 3b8c22e80342c81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Rick_and_Morty.Characters) -&gt; () in Rick_and_Morty.RickAndMortyListViewModel.getNext() -&gt; ()"
+                  moduleName = "Rick_and_Morty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "648">
+               </Location>
+               <Location
+                  uuid = "F5BE10ED-9A07-4A35-A911-90C676398179 - 3b8c22e80342c81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Rick_and_Morty.Characters) -&gt; () in Rick_and_Morty.RickAndMortyListViewModel.getNext() -&gt; ()"
+                  moduleName = "Rick_and_Morty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sara.francisco/Desktop/Sara_Francisco_Barrado_Julio_2023/Rick_and_Morty/Rick_and_Morty/MVVM/List/RickAndMortyListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "936">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

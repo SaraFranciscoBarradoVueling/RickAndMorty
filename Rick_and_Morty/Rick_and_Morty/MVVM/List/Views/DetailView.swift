@@ -8,35 +8,29 @@
 import SwiftUI
 
 struct DetailView: View {
-    var image = ""
-    var name = ""
-    var info = ""
-    var moreInfo = ""
+    var character: Results!
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: image)){ image in
+            AsyncImage(url: URL(string: character.image ?? "")){ image in
                 image.resizable()
-                    .cornerRadius(10)
+                    .cornerRadius(100)
                 
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 100, height: 100)
-            VStack(alignment:.leading) {
-                Text(name)
+            .frame(width: 200, height: 200)
+            Text(character.name ?? "")
                     .font(.headline)
                     .fontWeight(.medium)
-                    .multilineTextAlignment(.leading)
-                Text(info)
+                    .multilineTextAlignment(.center)
+            Text(character.status ?? "")
                     .font(.subheadline)
                     .fontWeight(.regular)
-            }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-            .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.leading)
-            Text(moreInfo)
+            Text(character.species ?? "")
                 .font(.footnote)
                 .fontWeight(.light)
         }
+        .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.center)
     }
 }
 
