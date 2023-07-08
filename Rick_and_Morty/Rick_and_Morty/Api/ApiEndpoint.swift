@@ -36,7 +36,7 @@ extension ApiEndpoint: ApiConfigurationProtocol {
     var request: URLRequest {
         var request: URLRequest
 
-        guard let url = URL(string: "https://rickandmortyapi.com/api/(path)") else {
+        guard let url = URL(string: "https://rickandmortyapi.com/api/\(path)") else {
             preconditionFailure("Invalid URL format")
         }
 
