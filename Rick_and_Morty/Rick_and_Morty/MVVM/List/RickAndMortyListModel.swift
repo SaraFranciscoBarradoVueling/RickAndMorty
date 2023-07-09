@@ -10,8 +10,8 @@ import Foundation
 enum CharacterViewModelState {
 case initial
 case loading
-case loaded(characters:Characters)
-case error(errorMessage:String)
+case loaded(characters: Characters)
+case error(errorMessage: String)
 }
 
 struct Characters: Decodable {

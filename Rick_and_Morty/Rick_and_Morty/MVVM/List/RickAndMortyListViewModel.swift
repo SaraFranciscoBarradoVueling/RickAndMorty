@@ -7,62 +7,80 @@
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     var apiSession: ApiProtocol = Api()
     @Published var charactersState: CharacterViewModelState = CharacterViewModelState.initial
     var cancellable = Set<AnyCancellable>()
-    var actualPage = 0
+    @Published var actualPage = 0
     var nextPage = ""
+    var prevPage = ""
 
     init() {
         getAllCharacters()
     }
+    
+    private func fetchData(page: String?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
+        charactersState = CharacterViewModelState.loading
+        let request = page != nil ? getNextPage(page: page!) : getAllCharacters()
+        
+        request
+            .sink { [weak self] response in
+                switch response {
+                case .finished:
+                    print("finish")
+                case .failure(let error):
+                    self?.charactersState = CharacterViewModelState.error(errorMessage: "\(error)")
+                }
+            } receiveValue: { [weak self] characters in
+                self?.charactersState = CharacterViewModelState.loaded(characters: characters)
+                if let next = characters.info.next, let queryRange = next.range(of: "?page=") {
+                    self?.nextPage = String(next[queryRange.upperBound...])
+                }
+                if let prev = characters.info.prev, let queryRange = prev.range(of: "?page=") {
+                    self?.prevPage = String(prev[queryRange.upperBound...])
+                }
+                self?.actualPage = (Int(self?.nextPage ?? "") ?? 0) - 1
+                
+                completion(.success(characters))
+            }
+            .store(in: &cancellable)
+    }
 
     func getAllCharacters() {
-        charactersState = CharacterViewModelState.loading
-        getAllCharacters()
-            .sink { [weak self] completion in
-            switch completion {
-
-            case .finished:
-                print("finish")
+        fetchData(page: nil) { result in
+            switch result {
+                
+            case .success(_):
+                break
             case .failure(let error):
-                self?.charactersState = CharacterViewModelState.error(errorMessage: "\(error)")
+                print(error.localizedDescription)
             }
-        } receiveValue: { [weak self] Characters in
-            self?.charactersState = CharacterViewModelState.loaded(characters: Characters)
-            if let next = Characters.info.next, let queryRange = next.range(of: "?page=") {
-                self?.nextPage = String(next[queryRange.upperBound...])
-            }
-            self?.actualPage = (Int(self?.nextPage ?? "") ?? 0) - 1
         }
-            .store(in: &cancellable)
     }
-    
+
     func getNext() {
-        charactersState = CharacterViewModelState.loading
-        getNextPage(page: nextPage)
-            .sink { [weak self] completion in
-            switch completion {
-
-            case .finished:
-                print("finish")
+        fetchData(page: nextPage) { result in
+            switch result {
+                
+            case .success(_):
+                break
             case .failure(let error):
-                self?.charactersState = CharacterViewModelState.error(errorMessage: "\(error)")
+                print(error.localizedDescription)
             }
-        } receiveValue: { [weak self] Characters in
-            self?.charactersState = CharacterViewModelState.loaded(characters: Characters)
-            if let next = Characters.info.next, let queryRange = next.range(of: "?page=") {
-                self?.nextPage = String(next[queryRange.upperBound...])
-            }
-            self?.actualPage = (Int(self?.nextPage ?? "") ?? 0) - 1
         }
-            .store(in: &cancellable)
     }
-    
-    func returnActualPage() -> String {
-        return String(actualPage)
+
+    func getPrev() {
+        fetchData(page: prevPage) { result in
+            switch result {
+                
+            case .success(_):
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
