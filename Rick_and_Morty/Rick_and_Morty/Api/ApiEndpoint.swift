@@ -9,7 +9,7 @@ import Foundation
 
 internal enum ApiEndpoint {
     case getAllCharacters
-    case getNextPage(page: String)
+    case getNextOrPrevPage(page: String)
 }
 
 extension ApiEndpoint: ApiConfigurationProtocol {
@@ -31,14 +31,14 @@ extension ApiEndpoint: ApiConfigurationProtocol {
         switch self {
         case .getAllCharacters:
             return "character"
-        case .getNextPage(let page):
+        case .getNextOrPrevPage(let page):
             return "character/?page=" + page
         }
     }
 
     var request: URLRequest {
         var request: URLRequest
-        guard var url = URL(string: "https://rickandmortyapi.com/api/\(path)") else {
+        guard let url = URL(string: "https://rickandmortyapi.com/api/\(path)") else {
             preconditionFailure("Invalid URL format")
         }
         request = URLRequest(url: url)

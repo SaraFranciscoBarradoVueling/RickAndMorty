@@ -24,7 +24,14 @@ extension RickAndMortyServices {
 
     func getNextPage(page: String) -> AnyPublisher<Characters, ApiError> {
 
-        return apiSession.request(with: ApiEndpoint.getNextPage(page: page))
+        return apiSession.request(with: ApiEndpoint.getNextOrPrevPage(page: page))
+
+            .eraseToAnyPublisher()
+    }
+
+    func getPrevPage(page: String) -> AnyPublisher<Characters, ApiError> {
+
+        return apiSession.request(with: ApiEndpoint.getNextOrPrevPage(page: page))
 
             .eraseToAnyPublisher()
     }
