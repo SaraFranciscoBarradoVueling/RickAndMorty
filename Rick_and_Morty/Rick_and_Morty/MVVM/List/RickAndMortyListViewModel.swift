@@ -14,18 +14,22 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     @Published var charactersState: CharacterViewModelState = CharacterViewModelState.initial
     var cancellable = Set<AnyCancellable>()
     @Published var actualPage = 0
-    var nextPage = ""
-    var prevPage = ""
+    var nextPage = 0
+    var prevPage = 0
 
     init() {
         getAllCharacters()
     }
     
-    private func fetchData(page: String?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
+    private func fetchData(page: Int?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
         charactersState = CharacterViewModelState.loading
         var request: AnyPublisher<Characters, ApiError> = getAllCharacters()
         if let safepage = page {
-            request = getNextPage(page: safepage)
+            if safepage == nextPage {
+                request = getNextPage(page: String(safepage))
+            } else {
+                request = getPrevPage(page: String(safepage))
+            }
         }
         
         request
@@ -39,12 +43,12 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
             } receiveValue: { [weak self] characters in
                 self?.charactersState = CharacterViewModelState.loaded(characters: characters)
                 if let next = characters.info.next, let queryRange = next.range(of: "?page=") {
-                    self?.nextPage = String(next[queryRange.upperBound...])
+                    self?.nextPage = Int(next[queryRange.upperBound...]) ?? 0
                 }
                 if let prev = characters.info.prev, let queryRange = prev.range(of: "?page=") {
-                    self?.prevPage = String(prev[queryRange.upperBound...])
+                    self?.prevPage = Int(prev[queryRange.upperBound...]) ?? 0
                 }
-                self?.actualPage = (Int(self?.nextPage ?? "") ?? 0) - 1
+                self?.actualPage = (self?.nextPage ?? 0) - 1
                 
                 completion(.success(characters))
             }
