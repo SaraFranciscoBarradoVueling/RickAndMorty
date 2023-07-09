@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RickAndMortyList: View {
     @StateObject private var viewModel: RickAndMortyListViewModel = RickAndMortyListViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
     @State var actualPage = 0
     @State private var searchText = ""
 
