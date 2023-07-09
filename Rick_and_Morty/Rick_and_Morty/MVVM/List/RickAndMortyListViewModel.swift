@@ -12,18 +12,29 @@ import SwiftUI
 class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     var apiSession: ApiProtocol = Api()
     @Published var charactersState: CharacterViewModelState = CharacterViewModelState.initial
-    var cancellable = Set<AnyCancellable>()
     @Published var actualPage = 0
-    var nextPage = ""
-    var prevPage = ""
+    var cancellable = Set<AnyCancellable>()
+    var nextPage = 0
+    var prevPage = 0
+    
+    init(){
+        print("viewModel inicialized")
+    }
 
-    init() {
-        getAllCharacters()
+    deinit {
+        print("viewModel deinit")
     }
     
-    private func fetchData(page: String?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
+    private func fetchData(page: Int?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
         charactersState = CharacterViewModelState.loading
-        let request = page != nil ? getNextPage(page: page!) : getAllCharacters()
+        var request: AnyPublisher<Characters, ApiError> = getAllCharacters()
+        if let safepage = page {
+            if safepage == nextPage {
+                request = getNextPage(page: String(safepage))
+            } else {
+                request = getPrevPage(page: String(safepage))
+            }
+        }
         
         request
             .sink { [weak self] response in
@@ -36,12 +47,12 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
             } receiveValue: { [weak self] characters in
                 self?.charactersState = CharacterViewModelState.loaded(characters: characters)
                 if let next = characters.info.next, let queryRange = next.range(of: "?page=") {
-                    self?.nextPage = String(next[queryRange.upperBound...])
+                    self?.nextPage = Int(next[queryRange.upperBound...]) ?? 0
                 }
                 if let prev = characters.info.prev, let queryRange = prev.range(of: "?page=") {
-                    self?.prevPage = String(prev[queryRange.upperBound...])
+                    self?.prevPage = Int(prev[queryRange.upperBound...]) ?? 0
                 }
-                self?.actualPage = (Int(self?.nextPage ?? "") ?? 0) - 1
+                self?.actualPage = (self?.nextPage ?? 0) - 1
                 
                 completion(.success(characters))
             }
@@ -84,12 +95,12 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
         }
     }
 
-    func filteredData(characters: [Results], searchText: String)-> [Results] {
-        var filteredData = [Results]()
-        characters.forEach { item in
-            if let name = item.name, name.lowercased().contains(searchText.lowercased()) {
-                filteredData.append(item)
+    func filteredData(characters: [Results], searchText: String) -> [Results] {
+        let filteredData = characters.filter { item in
+            if let name = item.name {
+                return name.lowercased().contains(searchText.lowercased())
             }
+            return false
         }
         return filteredData
     }

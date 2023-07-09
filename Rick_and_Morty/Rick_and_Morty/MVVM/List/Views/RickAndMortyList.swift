@@ -6,25 +6,23 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct RickAndMortyList: View {
     @StateObject private var viewModel: RickAndMortyListViewModel = RickAndMortyListViewModel()
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
     @State var actualPage = 0
     @State private var searchText = ""
 
     var body: some View {
+
         TextField("Search", text: $searchText)
             .padding()
             .background(Color.gray.opacity(0.2))
             .cornerRadius(8)
             .padding()
-
+            .onAppear {
+                viewModel.getAllCharacters()
+            }
         NavigationView {
             List {
                 switch viewModel.charactersState {
@@ -62,8 +60,8 @@ struct RickAndMortyList: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if viewModel.actualPage != 1 {
-                        Button(action: {
-                            viewModel.getPrev()
+                        Button(action: { [weak viewModel] in
+                            viewModel?.getPrev()
                         }) {
                             HStack {
                                 Image(systemName: "arrow.left")
@@ -73,8 +71,8 @@ struct RickAndMortyList: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        viewModel.getNext()
+                    Button(action: {  [weak viewModel] in
+                        viewModel?.getNext()
                     }) {
                         HStack {
                             Text("Next")
@@ -89,6 +87,6 @@ struct RickAndMortyList: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RickAndMortyList().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        RickAndMortyList()
     }
 }
