@@ -62,8 +62,8 @@ struct RickAndMortyList: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if viewModel.actualPage != 1 {
-                        Button(action: {
-                            viewModel.getPrev()
+                        Button(action: { [weak viewModel] in
+                            viewModel?.getPrev()
                         }) {
                             HStack {
                                 Image(systemName: "arrow.left")
@@ -73,8 +73,8 @@ struct RickAndMortyList: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        viewModel.getNext()
+                    Button(action: {  [weak viewModel] in
+                        viewModel?.getNext()
                     }) {
                         HStack {
                             Text("Next")
