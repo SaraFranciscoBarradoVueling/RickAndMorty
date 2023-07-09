@@ -17,6 +17,14 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     var nextPage = 0
     var prevPage = 0
     
+    init(){
+        print("viewModel inicialized")
+    }
+
+    deinit {
+        print("viewModel deinit")
+    }
+    
     private func fetchData(page: Int?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
         charactersState = CharacterViewModelState.loading
         var request: AnyPublisher<Characters, ApiError> = getAllCharacters()
