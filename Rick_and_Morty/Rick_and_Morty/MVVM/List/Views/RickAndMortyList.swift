@@ -19,12 +19,15 @@ struct RickAndMortyList: View {
     @State private var searchText = ""
 
     var body: some View {
+
         TextField("Search", text: $searchText)
             .padding()
             .background(Color.gray.opacity(0.2))
             .cornerRadius(8)
             .padding()
-
+            .onAppear {
+                viewModel.getAllCharacters()
+            }
         NavigationView {
             List {
                 switch viewModel.charactersState {
