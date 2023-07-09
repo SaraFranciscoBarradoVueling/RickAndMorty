@@ -23,7 +23,8 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     
     private func fetchData(page: String?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
         charactersState = CharacterViewModelState.loading
-        let request = page != nil ? getNextPage(page: page!) : getAllCharacters()
+        guard let safePage = page else { return }
+        let request = page != nil ? getNextPage(page: safePage) : getAllCharacters()
         
         request
             .sink { [weak self] response in
