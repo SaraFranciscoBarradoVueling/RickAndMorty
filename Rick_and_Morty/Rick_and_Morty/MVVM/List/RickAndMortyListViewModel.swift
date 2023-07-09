@@ -83,4 +83,14 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
             }
         }
     }
+
+    func filteredData(characters: [Results], searchText: String)-> [Results] {
+        var filteredData = [Results]()
+        characters.forEach { item in
+            if let name = item.name, name.lowercased().contains(searchText.lowercased()) {
+                filteredData.append(item)
+            }
+        }
+        return filteredData
+    }
 }

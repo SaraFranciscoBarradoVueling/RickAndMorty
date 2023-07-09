@@ -16,7 +16,15 @@ struct RickAndMortyList: View {
         animation: .default)
     private var items: FetchedResults<Item>
     @State var actualPage = 0
+    @State private var searchText = ""
+
     var body: some View {
+        TextField("Search", text: $searchText)
+            .padding()
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(8)
+            .padding()
+
         NavigationView {
             List {
                 switch viewModel.charactersState {
@@ -28,13 +36,26 @@ struct RickAndMortyList: View {
                     ErrorCell()
                     Text(error)
                 case .loaded(let data):
-                    ForEach(data.results ?? [Results]()) { character in
-                        NavigationLink {
-                            DetailView(character: character)
-                        } label: {
-                            CharacterCell(results: character)
+                    if searchText.isEmpty {
+                        ForEach(data.results ?? [Results]()) { character in
+                            NavigationLink {
+                                DetailView(character: character)
+                            } label: {
+                                CharacterCell(results: character)
+                            }
+                        }
+                    } else {
+                        let filteredData = viewModel.filteredData(characters: data.results ?? [Results](),
+                                                                  searchText: searchText)
+                        ForEach(filteredData) { character in
+                            NavigationLink {
+                                DetailView(character: character)
+                            } label: {
+                                CharacterCell(results: character)
+                            }
                         }
                     }
+
                 }
             }
             .navigationTitle("Characters page:  " + String(viewModel.actualPage))
@@ -46,7 +67,7 @@ struct RickAndMortyList: View {
                         }) {
                             HStack {
                                 Image(systemName: "arrow.left")
-                                Text("Next")
+                                Text("Prev")
                             }
                         }
                     }
