@@ -12,13 +12,10 @@ import SwiftUI
 class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
     var apiSession: ApiProtocol = Api()
     @Published var charactersState: CharacterViewModelState = CharacterViewModelState.initial
-    var cancellable = Set<AnyCancellable>()
     @Published var actualPage = 0
+    var cancellable = Set<AnyCancellable>()
     var nextPage = 0
     var prevPage = 0
-
-    init() {
-    }
     
     private func fetchData(page: Int?, completion: @escaping (Result<Characters, ApiError>) -> Void) {
         charactersState = CharacterViewModelState.loading
@@ -90,12 +87,12 @@ class RickAndMortyListViewModel: ObservableObject, RickAndMortyServices {
         }
     }
 
-    func filteredData(characters: [Results], searchText: String)-> [Results] {
-        var filteredData = [Results]()
-        characters.forEach { item in
-            if let name = item.name, name.lowercased().contains(searchText.lowercased()) {
-                filteredData.append(item)
+    func filteredData(characters: [Results], searchText: String) -> [Results] {
+        let filteredData = characters.filter { item in
+            if let name = item.name {
+                return name.lowercased().contains(searchText.lowercased())
             }
+            return false
         }
         return filteredData
     }
